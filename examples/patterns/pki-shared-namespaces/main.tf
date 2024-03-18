@@ -10,19 +10,15 @@ module "pki" {
   source = "./modules/pki"
 }
 
-module "pki-role" {
-  source = "./modules/pki-role"
+# module "pki-role" {
+#   source = "./modules/pki-role"
 
-  path_pki_int   = module.pki.path_pki_int
-  issuer_ref_int = module.pki.issuer_ref_int
-}
+#   path_pki_int   = module.pki.path_pki_int
+#   issuer_ref_int = module.pki.issuer_ref_int
+# }
 
-module "pki-policy" {
-  source = "./modules/pki-policy"
-}
-
-module "pki-identity-group" {
-  source = "./modules/pki-identity-group"
+module "pki-shared-access" {
+  source = "./modules/pki-shared-access"
 }
 
 module "onboarding" {
@@ -30,9 +26,7 @@ module "onboarding" {
   count = 10
 
   app_id                       = "${var.app_prefix}-${format("%04d", count.index + 1)}"
-  pki_shared_identity_group_id = module.pki-identity-group.identity_group_id
+  pki_int_path                 = module.pki.pki_int_path
+  issuer_ref_int               = module.pki.issuer_ref_int
+  pki_shared_identity_group_id = module.pki-shared-access.identity_group_id
 }
-
-# module "tutorial-secrets-across-namespaces" {
-#   source = "./modules/tutorial-secrets-across-namespaces"
-# }

@@ -24,24 +24,6 @@ resource "vault_pki_secret_backend_issuer" "root" {
    revocation_signature_algorithm = "SHA256WithRSA"
 }
 
-# resource "vault_pki_secret_backend_role" "root" {
-#    backend          = vault_mount.pki-root.path
-#    name             = "root"
-#    ttl              = 86400
-#    allow_ip_sans    = true
-#    key_type         = "rsa"
-#    key_bits         = 4096
-#    allowed_domains  = ["sandpit.com"]
-#    allow_subdomains = true
-#    allow_any_name   = true
-# }
-
-# resource "vault_pki_secret_backend_config_urls" "root" {
-#    backend = vault_mount.pki-root.path
-#    issuing_certificates    = ["http://localhost:8200/v1/pki/ca"]
-#    crl_distribution_points = ["http://localhost:8200/v1/pki/crl"]
-# }
-
 // internal intermediate ca
 
 resource "vault_mount" "pki-int" {

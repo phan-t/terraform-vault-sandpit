@@ -47,3 +47,17 @@ resource "vault_identity_group_member_entity_ids" "this" {
   group_id          = var.pki_shared_identity_group_id
   exclusive         = false
 }
+
+resource "vault_pki_secret_backend_role" "this" {
+   backend          = var.pki_int_path
+   issuer_ref       = var.issuer_ref_int
+   name             = "${var.app_id}-sandpit-dot-com"
+   ttl              = 86400
+   max_ttl          = 2592000
+   allow_ip_sans    = true
+   key_type         = "rsa"
+   key_bits         = 4096
+   allowed_domains  = ["sandpit.com"]
+   allow_subdomains = true
+   organization     = ["sandpit"]
+}

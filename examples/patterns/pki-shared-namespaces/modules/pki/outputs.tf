@@ -1,4 +1,4 @@
-output "path_pki_int" {
+output "pki_int_path" {
   value = vault_mount.pki-int.path
 }
 
