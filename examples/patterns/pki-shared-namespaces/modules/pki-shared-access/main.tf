@@ -1,16 +1,16 @@
-resource "vault_policy" "pki-shared" {
-  name = "pki-shared"
+resource "vault_policy" "pki-int-shared" {
+  name = "pki-int-shared"
 
   policy = <<EOT
-path "pki*" {
+path "pki-int/*" {
   capabilities = [ "create", "read", "update", "delete", "list", "sudo" ]
 }
 EOT
 }
 
-resource "vault_identity_group" "pki-shared" {
+resource "vault_identity_group" "pki-int-shared" {
    namespace = "root"
-   name      = "pki-shared"
-   policies  = ["pki-shared"]
+   name      = "pki-int-shared"
+   policies  = ["pki-int-shared"]
    type      = "internal"
 }

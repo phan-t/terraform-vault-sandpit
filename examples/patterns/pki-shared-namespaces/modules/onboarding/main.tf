@@ -44,7 +44,7 @@ resource "vault_identity_entity_alias" "this" {
 resource "vault_identity_group_member_entity_ids" "this" {
   namespace         = "root"
   member_entity_ids = [vault_identity_entity.this.id]
-  group_id          = var.pki_shared_identity_group_id
+  group_id          = var.pki_int_shared_identity_group_id
   exclusive         = false
 }
 

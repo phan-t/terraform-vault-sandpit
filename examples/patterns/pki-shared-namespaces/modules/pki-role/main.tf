@@ -9,4 +9,5 @@ resource "vault_pki_secret_backend_role" "this" {
    key_bits         = 4096
    allowed_domains  = ["sandpit.com"]
    allow_subdomains = true
+   # allow_any_name   = true
 }
