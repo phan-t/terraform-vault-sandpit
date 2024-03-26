@@ -27,7 +27,7 @@ EOT
 
 resource "vault_identity_entity" "this" {
   namespace = vault_namespace.this.path
-  name      = "test"
+  name      = "${var.app_id}-sandpit-dot-com"
 }
 
 resource "vault_identity_entity_alias" "this" {
@@ -49,15 +49,17 @@ resource "vault_identity_group_member_entity_ids" "this" {
 }
 
 resource "vault_pki_secret_backend_role" "this" {
-   backend          = var.pki_int_path
-   issuer_ref       = var.issuer_ref_int
-   name             = "${var.app_id}-sandpit-dot-com"
-   ttl              = 86400
-   max_ttl          = 2592000
-   allow_ip_sans    = true
-   key_type         = "rsa"
-   key_bits         = 4096
-   allowed_domains  = ["sandpit.com"]
-   allow_subdomains = true
-   organization     = ["sandpit"]
+   backend            = var.pki_int_path
+   issuer_ref         = var.issuer_ref_int
+   name               = "${var.app_id}-sandpit-dot-com"
+   ttl                = 86400
+   max_ttl            = 2592000
+   allow_ip_sans      = true
+   key_type           = "rsa"
+   key_bits           = 4096
+   allowed_domains    = [ "test.sandpit.com" ]
+   allow_subdomains   = false
+   allow_bare_domains = true
+   organization       = [ "HashiCorp" ]
+   country            = [ "AU" ]
 }
