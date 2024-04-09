@@ -60,7 +60,7 @@ module "vault" {
   iam_instance_profile      = module.aws_prerequisites.iam_role_name
   vault_version             = var.vault_version
   asg_max_size              = 6
-  asg_instance_count        = 6
+  asg_instance_count        = 3
   asg_hook_value            = module.aws_prerequisites.asg_hook_value
   instance_size             = "m5.large"
   lb_type                   = module.aws_prerequisites.lb_type
