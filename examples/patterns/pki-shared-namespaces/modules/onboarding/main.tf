@@ -8,9 +8,9 @@ resource "vault_auth_backend" "userpass" {
   type       = "userpass"
 }
 
-resource "vault_generic_endpoint" "test-user" {
+resource "vault_generic_endpoint" "config" {
   namespace            = vault_namespace.this.path
-  path                 = "auth/userpass/users/test-user"
+  path                 = "auth/userpass/users/test-config"
   ignore_absent_fields = true
 
   data_json = <<EOT
@@ -30,9 +30,9 @@ resource "vault_identity_entity" "this" {
   name      = "${var.app_id}-sandpit-dot-com"
 }
 
-resource "vault_identity_entity_alias" "this" {
+resource "vault_identity_entity_alias" "config" {
   namespace      = vault_namespace.this.path
-  name           = "test-user"
+  name           = "test-config"
   mount_accessor = vault_auth_backend.userpass.accessor
   canonical_id   = vault_identity_entity.this.id
 
@@ -41,10 +41,10 @@ resource "vault_identity_entity_alias" "this" {
   ]
 }
 
-resource "vault_identity_group_member_entity_ids" "this" {
+resource "vault_identity_group_member_entity_ids" "config" {
   namespace         = "root"
   member_entity_ids = [vault_identity_entity.this.id]
-  group_id          = var.pki_int_shared_identity_group_id
+  group_id          = var.config_identity_group_id
   exclusive         = false
 }
 

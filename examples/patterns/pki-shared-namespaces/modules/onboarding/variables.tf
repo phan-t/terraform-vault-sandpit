@@ -10,6 +10,6 @@ variable "issuer_ref_int" {
   type = string
 }
 
-variable "pki_int_shared_identity_group_id" {
+variable "config_identity_group_id" {
   type = string
 }
