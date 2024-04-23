@@ -22,4 +22,5 @@ module "onboarding" {
   pki_int_path               = module.pki.pki_int_path
   issuer_ref_int             = module.pki.issuer_ref_int
   config_identity_group_id   = module.pki-int-shared-access.config_identity_group_id
+  issuance_identity_group_id = module.pki-int-shared-access.issuance_identity_group_id
 }

@@ -13,3 +13,7 @@ variable "issuer_ref_int" {
 variable "config_identity_group_id" {
   type = string
 }
+
+variable "issuance_identity_group_id" {
+  type = string
+}
