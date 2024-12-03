@@ -62,7 +62,7 @@ module "vault" {
   asg_max_size              = 6
   asg_instance_count        = 3
   asg_hook_value            = module.aws_prerequisites.asg_hook_value
-  instance_size             = "m5.large"
+  instance_size             = "m7i.large"
   lb_type                   = module.aws_prerequisites.lb_type
   ec2_subnet_ids            = module.aws_prerequisites.private_subnet_ids
   vault_secrets_arn         = module.aws_prerequisites.vault_secrets_arn
@@ -72,4 +72,8 @@ module "vault" {
   vault_hostname            = module.aws_prerequisites.route53_failover_fqdn
   lb_tg_arns                = module.aws_prerequisites.lb_tg_arns
   cloudwatch_log_group_name = module.aws_prerequisites.cloudwatch_log_group_name
+
+  depends_on = [
+    module.aws_prerequisites
+  ]
 }
